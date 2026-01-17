@@ -1,0 +1,35 @@
+# submission.yml
+
+setup:
+  # Install frontend and checkout dependencies, no need for local Maven (Docker builds backend).
+  - cd frontend && npm install
+  - cd checkout-widget && npm install
+
+start:
+  # Start all services (API, worker, dashboard, checkout, Postgres, Redis).
+  - docker-compose up -d
+
+test:
+  # No automated unit/integration tests provided.
+  - echo "No automated tests defined"
+
+verify:
+  # 1) Check API is up
+  - curl -f http://localhost:8000/api/v1/test/jobs/status
+
+  # 2) Basic health of dashboard and checkout (HTTP 200 on root)
+  - curl -f http://localhost:3000
+  - curl -f http://localhost:3001
+
+  # 3) Create an order via API (sanity check)
+  - curl -f -X POST http://localhost:8000/api/v1/orders \
+      -H "X-Api-Key: key_test_abc123" \
+      -H "X-Api-Secret: secret_test_xyz789" \
+      -H "Content-Type: application/json" \
+      -d '{"amount": 50000, "currency": "INR", "receipt": "submission_test"}'
+
+  # 4) Verify job queue status endpoint still responds
+  - curl -f http://localhost:8000/api/v1/test/jobs/status
+
+shutdown:
+  - docker-compose down

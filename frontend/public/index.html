@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Gateway Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
+
+<script src="http://localhost:3001/checkout.js"></script>
+<button id="pay-button">Pay Now</button>
+
+<script>
+  document.getElementById('pay-button').addEventListener('click', function () {
+    const checkout = new PaymentGateway({
+      key: 'key_test_abc123',
+      orderId: 'order_xyz',
+      onSuccess: function (response) {
+        console.log('Payment successful:', response.paymentId);
+      },
+      onFailure: function (error) {
+        console.log('Payment failed:', error);
+      }
+    });
+
+    checkout.open();
+  });
+</script>

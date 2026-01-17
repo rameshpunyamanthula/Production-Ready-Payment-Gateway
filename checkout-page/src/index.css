@@ -1,0 +1,192 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.checkout-container {
+  max-width: 500px;
+  margin: 40px auto;
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.order-summary {
+  text-align: center;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.order-summary h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.order-summary [data-test-id="order-amount"] {
+  font-size: 36px;
+  font-weight: bold;
+  display: block;
+  margin: 15px 0;
+}
+
+.order-summary [data-test-id="order-id"] {
+  font-size: 12px;
+  opacity: 0.9;
+  font-family: monospace;
+}
+
+.payment-methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.payment-methods button {
+  padding: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid #e0e0e0;
+  background: white;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.payment-methods button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.payment-methods button.active {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+form {
+  margin-top: 20px;
+}
+
+form input {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border 0.3s;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+form button[type="submit"] {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+form button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.processing-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.processing-state div:first-child {
+  font-size: 60px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.processing-state span {
+  display: block;
+  margin-top: 20px;
+  font-size: 20px;
+  color: #666;
+}
+
+.success-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  border-radius: 12px;
+  color: white;
+}
+
+.success-state div:first-child {
+  font-size: 80px;
+  margin-bottom: 20px;
+}
+
+.success-state h2 {
+  margin-bottom: 30px;
+}
+
+.success-state [data-test-id="payment-id"] {
+  font-family: monospace;
+  background: rgba(255,255,255,0.2);
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: inline-block;
+  margin: 20px 0;
+}
+
+.error-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+  border-radius: 12px;
+  color: white;
+}
+
+.error-state div:first-child {
+  font-size: 80px;
+  margin-bottom: 20px;
+}
+
+.error-state button {
+  margin-top: 30px;
+  padding: 15px 40px;
+  background: white;
+  color: #eb3349;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.error-state button:hover {
+  transform: scale(1.05);
+}
